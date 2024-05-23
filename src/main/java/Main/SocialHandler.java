@@ -1,6 +1,7 @@
 package Main;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -16,8 +17,8 @@ public class SocialHandler {
     }
 
     public String nameOfAccount(String name) {
-        if (name == null || name.isEmpty()) {
-            return "Name cannot be blank or null";
+        if (name == null || name.isEmpty() || name.isBlank()) {
+            return "Name cannot be blank, null, or Empty";
         } else if (name.length() <= 10) {
             return "@" + name.toLowerCase();
         } else {
@@ -72,6 +73,10 @@ public class SocialHandler {
                 System.out.println("Unable to close resource");
             }
         }
+    }
+
+    public class readFile{
+
     }
 
     public static void main(String[] args) {
