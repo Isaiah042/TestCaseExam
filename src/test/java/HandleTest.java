@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class HandleTest {
 
@@ -59,7 +61,8 @@ public class HandleTest {
     @Test
     @DisplayName("If handle was added despite multiple attempts")
     void addHandleTest(){
-        String expected = "@isaiahg";
+        Set<String> expected = new HashSet<>();
+        expected.add("@isaiahg");
 
         SocialHandler socialHandler = new SocialHandler();
         String name = "isaiahg";
@@ -76,7 +79,8 @@ public class HandleTest {
     @Test
     @DisplayName("Remove a Handler")
     void removeHandleTest(){
-        String expected = "@christt";
+        Set<String> expected = new HashSet<>();
+        expected.add("@christt");
 
         SocialHandler socialHandler = new SocialHandler();
         String name = "ChristT";
@@ -95,7 +99,8 @@ public class HandleTest {
     @Test
     @DisplayName("Change handlers name")
     void changeHandleTest(){
-        String expected = "@christt";
+        Set<String> expected = new HashSet<>();
+        expected.add("@christt");
         SocialHandler socialHandler = new SocialHandler();
 
         String name = "IsaiahG";

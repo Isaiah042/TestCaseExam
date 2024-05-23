@@ -1,7 +1,9 @@
 package Main;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.Phaser;
 
 public class SocialHandler {
 
@@ -44,17 +46,60 @@ public class SocialHandler {
     }
 
 
+    public static void socialMediaHandle(){
+        File file = new File("C:\\Users\\chell\\IdeaProjects\\TestCaseExam\\src\\main\\resources/SocialHandles");
+        try {
+            file.createNewFile();
+        } catch (IOException error) {
+            System.out.println("No such path exist");
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+    }
+
+    public static void writeToFile(Set<String> handles){
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("C:\\Users\\chell\\IdeaProjects\\TestCaseExam\\src\\main\\resources/SocialHandles");
+            fileWriter.write(handles.toString());
+            System.out.println("Wrote to file successfully");
+        } catch (IOException e) {
+            System.out.println("Unable to write to file");
+        }finally {
+            try {
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("Unable to close resource");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         SocialHandler socialHandler = new SocialHandler();
         String name = "IsaiahG";
         String handleName = socialHandler.nameOfAccount(name);
         socialHandler.addHandleToList(handleName);
+
+
         String name2 = "NelsonG";
         String handlerName2 = socialHandler.nameOfAccount(name2);
         socialHandler.addHandleToList(handlerName2);
-        socialHandler.removeHandle(handleName);
+
+
+//        socialHandler.removeHandle(handleName);
+
+        String name1 = "IsaiahG";
+        String handleName1 = socialHandler.nameOfAccount(name1);
+        socialHandler.addHandleToList(handleName1);
 
         socialHandler.changeHandle(handlerName2, "ChrisT");
         System.out.println(socialHandler.getUsernames());
+
+
+
+        socialMediaHandle();
+        writeToFile(socialHandler.getUsernames());
+
+
     }
 }
