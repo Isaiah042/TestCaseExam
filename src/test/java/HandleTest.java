@@ -59,7 +59,7 @@ public class HandleTest {
     @Test
     @DisplayName("If handle was added despite multiple attempts")
     void addHandleTest(){
-        String expected = "[@isaiahg]";
+        String expected = "@isaiahg";
 
         SocialHandler socialHandler = new SocialHandler();
         String name = "isaiahg";
@@ -73,4 +73,35 @@ public class HandleTest {
         Assertions.assertEquals(expected,socialHandler.getUsernames());
     }
 
+    @Test
+    @DisplayName("Remove a Handler")
+    void removeHandleTest(){
+        String expected = "@christt";
+
+        SocialHandler socialHandler = new SocialHandler();
+        String name = "ChristT";
+        String name2 = "IsaiahG";
+        String handleName = socialHandler.nameOfAccount(name);
+        String handleName2 = socialHandler.nameOfAccount(name2);
+        socialHandler.addHandleToList(handleName);
+        socialHandler.addHandleToList(handleName2);
+
+        socialHandler.removeHandle(handleName2);
+
+        Assertions.assertEquals(expected,socialHandler.getUsernames());
+    }
+
+
+    @Test
+    @DisplayName("Change handlers name")
+    void changeHandleTest(){
+        String expected = "@christt";
+        SocialHandler socialHandler = new SocialHandler();
+
+        String name = "IsaiahG";
+        String handleName = socialHandler.nameOfAccount(name);
+        socialHandler.addHandleToList(handleName);
+        socialHandler.changeHandle(handleName,"ChristT");
+        Assertions.assertEquals(expected,socialHandler.getUsernames());
+    }
 }

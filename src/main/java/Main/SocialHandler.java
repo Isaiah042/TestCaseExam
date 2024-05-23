@@ -1,9 +1,7 @@
 package Main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.Phaser;
 
 public class SocialHandler {
 
@@ -19,31 +17,44 @@ public class SocialHandler {
         if (name == null || name.isEmpty()) {
             return "Name cannot be blank or null";
         } else if (name.length() <= 10) {
-            return  "@" + name.toLowerCase();
-            } else {
-
-                return "@" + name.substring(0,9).toLowerCase();
-            }
+            return "@" + name.toLowerCase();
+        } else {
+            return "@" + name.substring(0, 9).toLowerCase();
         }
+    }
 
-        public void addHandleToList(String handle) {
-            usernames.add(nameOfAccount(handle));
-        }
+    public void addHandleToList(String handle) {
+        usernames.add(handle);
+    }
+
+    public void removeHandle(String handle){
+        usernames.remove(handle);
+    }
+
+
+    public void changeHandle(String remove, String add) {
+        removeHandle(remove);
+        nameOfAccount(add);
+        addHandleToList("@" + add.toLowerCase());
+    }
 
 
     public Set<String> getUsernames() {
         return usernames;
     }
 
+
     public static void main(String[] args) {
         SocialHandler socialHandler = new SocialHandler();
         String name = "IsaiahG";
         String handleName = socialHandler.nameOfAccount(name);
-        System.out.println(handleName);
         socialHandler.addHandleToList(handleName);
-        String name2 = "IsaiahG";
+        String name2 = "NelsonG";
         String handlerName2 = socialHandler.nameOfAccount(name2);
         socialHandler.addHandleToList(handlerName2);
+        socialHandler.removeHandle(handleName);
+
+        socialHandler.changeHandle(handlerName2, "ChrisT");
         System.out.println(socialHandler.getUsernames());
     }
 }
